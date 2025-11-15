@@ -48,9 +48,24 @@ public class AsyncUxController {
                     Thread.currentThread().interrupt();
                     return;
                 }
+
+                // Set progress bar color to go from red to green as progress increases
+                // Calculate color in worker thread (outside Platform.runLater)
+                double progress = iteration / 10.0;
+                String color = String.format("#%02x%02x%02x", 
+                    (int)((1 - progress) * 255), 
+                    (int)(progress * 255), 
+                    0);
+
+                // Then capture it in the lambda
+                final String calculatedColor = color;
                 
                 // Update UI on JavaFX Application Thread
                 Platform.runLater(() -> {
+                    // Set progress bar color based on iteration
+                    progressBar.setStyle("-fx-accent: " + calculatedColor + ";");
+
+                    // Update progress label and progress bar
                     progressLabel.setText("Progress: " + iteration + "/10");
                     progressBar.setProgress(iteration / 10.0);
                     statusLabel.setText("Processing iteration " + iteration);
