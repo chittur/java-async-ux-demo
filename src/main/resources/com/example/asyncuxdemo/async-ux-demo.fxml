@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.asyncuxdemo.AsyncUxController">
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+    
+    <Label text="CompletableFuture Demo" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    
+    <Label fx:id="statusLabel" text="Ready to start" style="-fx-font-size: 14px;" />
+    
+    <Label fx:id="progressLabel" text="Progress: 0/10" style="-fx-font-size: 14px;" />
+    
+    <ProgressBar fx:id="progressBar" prefWidth="300.0" progress="0.0" />
+    
+    <Button fx:id="startButton" text="Start Async Task" style="-fx-font-size: 14px;" onAction="#handleStartTask" />
+</VBox>
